@@ -1,0 +1,206 @@
+( hello-screen.tal )
+
+( devices )
+|00 @System  [ &vector $2 &pad $6 &r $2 &g $2 &b $2 ]
+
+( main program )
+|0100
+      ( set system colors )
+      #2ce9 .System/r DEO2
+      #01c0 .System/g DEO2
+      #2ce5 .System/b DEO2
+
+|20 @Screen  [ &vector $2 &width $2 &height $2 &auto $1 &pad $1 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1 ]
+
+( hello-pixel.tal )
+
+( devices )
+|00 @System  [ &vector $2 &pad $6 &r $2 &g $2 &b $2 ]
+|20 @Screen  [ &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1 ]
+
+( main program )
+|0100
+      ( set system colors )
+      #2ce9 .System/r DEO2
+      #01c0 .System/g DEO2
+      #2ce5 .System/b DEO2
+
+      ( draw a pixel in the screen )
+      #0008 .Screen/x DEO2
+      #0008 .Screen/y DEO2
+      #41 .Screen/pixel DEO ( fg layer, color 1 )
+
+
+%INC-X { .Screen/x DEI2 #0001 ADD2 .Screen/x DEO2 } ( -- )
+
+%ADD-X {   } ( increment -- )
+
+%INC-X { .Screen/x DEI2 INC2 .Screen/x DEO2 } ( -- )
+
+( hello-pixels.tal )
+
+( devices )
+|00 @System  [ &vector $2 &pad $6 &r $2 &g $2 &b $2 ]
+|20 @Screen  [ &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1 ]
+
+( macros )
+%DRAW-PIXEL { #41 .Screen/pixel DEO } ( -- )
+%INC-X { .Screen/x DEI2 INC2 .Screen/x DEO2 } ( -- )
+
+( main program )
+|0100
+      #2ce9 .System/r DEO2
+      #01c0 .System/g DEO2
+      #2ce5 .System/b DEO2
+
+      ( set initial x,y coordinates )
+      #0008 .Screen/x DEO2
+      #0008 .Screen/y DEO2
+
+      ( draw 6 pixels in an horizontal line )
+      DRAW-PIXEL INC-X
+      DRAW-PIXEL INC-X
+      DRAW-PIXEL INC-X
+      DRAW-PIXEL INC-X
+      DRAW-PIXEL INC-X
+      DRAW-PIXEL
+
+%DRAW-LINE {  } ( -- )
+
+@square ff81 8181 8181 81ff
+
+;square .Screen/addr DEO2
+
+( hello-sprite.tal )
+
+( devices )
+|00 @System  [ &vector $2 &pad $6 &r $2 &g $2 &b $2 ]
+|20 @Screen  [ &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1 ]
+
+( main program )
+|0100
+      ( set system colors )
+      #2ce9 .System/r DEO2
+      #01c0 .System/g DEO2
+      #2ce5 .System/b DEO2
+
+      ( set x,y coordinates )
+      #0008 .Screen/x DEO2
+      #0008 .Screen/y DEO2
+
+      ( set sprite address )
+      ;square .Screen/addr DEO2
+
+      ( draw sprite in the background )
+      ( using color 1 for the outline )
+      #01 .Screen/sprite DEO
+
+BRK
+
+@square ff81 8181 8181 81ff
+
+( hello-sprites.tal )
+
+( devices )
+|00 @System  [ &vector $2 &pad $6 &r $2 &g $2 &b $2 ]
+|20 @Screen  [ &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1 ]
+
+( macros )
+%INIT-X { #0008 .Screen/x DEO2 } ( -- )
+%INIT-Y { #0008 .Screen/y DEO2 } ( -- )
+%8ADD-X { .Screen/x DEI2 #0008 ADD2 .Screen/x DEO2 } ( -- )
+%8ADD-Y { .Screen/y DEI2 #0008 ADD2 .Screen/y DEO2 } ( -- )
+
+( main program )
+|0100
+      ( set system colors )
+      #2ce9 .System/r DEO2
+      #01c0 .System/g DEO2
+      #2ce5 .System/b DEO2
+
+      ( set  initial x,y coordinates )
+      INIT-X INIT-Y
+
+      ( set sprite address )
+      ;square .Screen/addr DEO2
+
+      #00 .Screen/sprite DEO 8ADD-X
+      #01 .Screen/sprite DEO 8ADD-X
+      #02 .Screen/sprite DEO 8ADD-X
+      #03 .Screen/sprite DEO 8ADD-Y
+
+      INIT-X
+      #04 .Screen/sprite DEO 8ADD-X
+      #05 .Screen/sprite DEO 8ADD-X
+      #06 .Screen/sprite DEO 8ADD-X
+      #07 .Screen/sprite DEO 8ADD-Y
+
+      INIT-X
+      #08 .Screen/sprite DEO 8ADD-X
+      #09 .Screen/sprite DEO 8ADD-X
+      #0a .Screen/sprite DEO 8ADD-X
+      #0b .Screen/sprite DEO 8ADD-Y
+
+      INIT-X
+      #0c .Screen/sprite DEO 8ADD-X
+      #0d .Screen/sprite DEO 8ADD-X
+      #0e .Screen/sprite DEO 8ADD-X
+      #0f .Screen/sprite DEO
+
+BRK
+
+@square ff81 8181 8181 81ff
+
+@rock 3c4e 9ffd f962 3c00
+@character 3c7e 5a7f 1b3c 5a18
+
+( hello-2bpp-sprite.tal )
+
+( devices )
+|00 @System  [ &vector $2 &pad $6 &r $2 &g $2 &b $2 ]
+|20 @Screen  [ &vector $2 &width $2 &height $2 &pad $2 &x $2 &y $2 &addr $2 &pixel $1 &sprite $1 ]
+
+( macros )
+%INIT-X { #0008 .Screen/x DEO2 } ( -- )
+%INIT-Y { #0008 .Screen/y DEO2 } ( -- )
+%cADD-X { .Screen/x DEI2 #000c ADD2 .Screen/x DEO2 } ( -- )
+%cADD-Y { .Screen/y DEI2 #000c ADD2 .Screen/y DEO2 } ( -- )
+
+( main program )
+|0100
+      ( set system colors )
+      #2ce9 .System/r DEO2
+      #01c0 .System/g DEO2
+      #2ce5 .System/b DEO2
+
+      ( set  initial x,y coordinates )
+      INIT-X INIT-Y
+      ( set sprite address )
+      ;new-square .Screen/addr DEO2
+
+      #80 .Screen/sprite DEO cADD-X
+      #81 .Screen/sprite DEO cADD-X
+      #82 .Screen/sprite DEO cADD-X
+      #83 .Screen/sprite DEO cADD-Y
+
+      INIT-X
+      #84 .Screen/sprite DEO cADD-X
+      #85 .Screen/sprite DEO cADD-X
+      #86 .Screen/sprite DEO cADD-X
+      #87 .Screen/sprite DEO cADD-Y
+
+      INIT-X
+      #88 .Screen/sprite DEO cADD-X
+      #89 .Screen/sprite DEO cADD-X
+      #8a .Screen/sprite DEO cADD-X
+      #8b .Screen/sprite DEO cADD-Y
+
+      INIT-X
+      #8c .Screen/sprite DEO cADD-X
+      #8d .Screen/sprite DEO cADD-X
+      #8e .Screen/sprite DEO cADD-X
+      #8f .Screen/sprite DEO
+
+BRK
+
+@new-square  017f 7b73 6343 7fff     007c 7c7c 7c7c 0000

@@ -1,0 +1,10 @@
+@ssft ( str* len* -- )
+
+	STH2 DUP2k ;slen JSR2 ADD2 STH2r
+	DUP2 #8000 GTH2 ,&l JCN
+	ORAk ,&r JCN
+	POP2 POP2 POP2
+
+JMP2r
+	&l #8000 SWP2 SUB2 #8000 ADD2 ;msfl JSR2 JMP2r
+	&r ;msfr JSR2 JMP2r

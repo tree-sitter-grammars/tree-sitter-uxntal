@@ -1,0 +1,4 @@
+@zstr ( zero-page length-prefixed string )
+	&push ( zstr c -- zstr ) OVR LDZk INC SWP STZk ADD STZ JMP2r
+	&pop ( zstr -- zstr ) DUP LDZk #01 SUB SWP STZ JMP2r
+	&print ( zstr -- zstr ) LDZk ADDk NIP SWP &l INC LDZk #18 DEO NEQk ,&l JCN NIP JMP2r

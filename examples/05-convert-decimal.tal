@@ -1,0 +1,12 @@
+@sdec ( str* -- val* )
+
+	LIT2r 0000
+	&w
+		LIT2r 000a MUL2r
+		LITr 00
+		LDAk #30 SUB STH ADD2r
+		INC2 LDAk ,&w JCN
+	POP2
+	STH2r
+
+JMP2r

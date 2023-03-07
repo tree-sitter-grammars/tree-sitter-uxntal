@@ -1,0 +1,69 @@
+( hello.tal )
+|0100 LIT 68 LIT 18 DEO
+
+( same as )
+|0100 80 68 80 18 17 ( LIT 68 LIT 18 DEO )
+
+( print more characters ) 
+|0100 LIT 68 LIT 18 DEO ( h )
+      LIT 65 LIT 18 DEO ( e )
+      LIT 6c LIT 18 DEO ( l )
+      LIT 6c LIT 18 DEO ( l )
+      LIT 6f LIT 18 DEO ( o )
+      LIT 0a LIT 18 DEO ( newline )
+
+|0100 #68 #18 DEO
+
+|0100 #6818 DEO
+
+( hello.tal )
+|0100 LIT "h #18 DEO
+      LIT "e #18 DEO
+      LIT "l #18 DEO
+      LIT "l #18 DEO
+      LIT "o #18 DEO
+      #0a #18 DEO ( newline )
+
+( hello.tal )
+
+( devices )
+|10 @Console [ &vector $2 &read $1 &pad $5 &write $1 &error $1 ]
+
+|10 @Console [ &vector $2 &read $1 &pad $5 &write $1 &error $1 ]
+
+( main program )
+|0100 LIT "h .Console/write DEO
+      LIT "e .Console/write DEO
+      LIT "l .Console/write DEO
+      LIT "l .Console/write DEO
+      LIT "o .Console/write DEO
+      #0a .Console/write DEO ( newline )
+
+.Console/write DEO ( equivalent to #18 DEO, or LIT 18 DEO )
+
+( macro: print a character to standard output )
+%EMIT { .Console/write DEO } ( character -- )
+
+( print character h )
+|1000 LIT "h EMIT
+
+( print a newline )
+%NL { #0a EMIT } ( -- )
+
+( hello.tal )
+( devices )
+|10 @Console [ &vector $2 &read $1 &pad $5 &write $1 &error $1 ]
+
+( macros )
+( print a character to standard output )
+%EMIT { .Console/write DEO } ( character -- )
+( print a newline )
+%NL { #0a EMIT } ( -- )
+
+( main program )
+|0100 LIT "h EMIT
+      LIT "e EMIT
+      LIT "l EMIT
+      LIT "l EMIT
+      LIT "o EMIT
+      NL

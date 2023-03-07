@@ -1,0 +1,11 @@
+@pbin ( v* -- )
+
+	,&t STR2
+	#1000
+	&l
+		#0f OVR SUB [ LIT2 &t $2 ] ROT SFT2
+		NIP #01 AND LIT "0 ADD #18 DEO
+		INC GTHk ?&l
+	POP2
+
+JMP2r

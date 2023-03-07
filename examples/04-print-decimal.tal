@@ -1,0 +1,18 @@
+@pdec ( v* -- )
+
+	#00 ,&z STR
+	#2710 ,&parse JSR
+	#03e8 ,&parse JSR
+	#0064 ,&parse JSR
+	#000a ,&parse JSR
+	NIP
+	&emit
+		DUP [ LIT &z $1 ] EQU ,&skip JCN
+			#ff ,&z STR DUP #30 ADD #18 DEO
+			&skip
+	POP
+
+JMP2r
+	&parse
+		DIV2k DUP ,&emit JSR MUL2 SUB2
+	JMP2r

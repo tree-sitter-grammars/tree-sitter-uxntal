@@ -1,0 +1,12 @@
+|0100
+
+	,pinl JSR "hello 20 "World $1
+
+BRK
+
+@pinl ( -- )
+
+	LDArk STHr DUP #18 DEO
+	INC2r ,pinl JCN
+
+JMP2r

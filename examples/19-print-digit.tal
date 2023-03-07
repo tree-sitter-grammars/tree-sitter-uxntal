@@ -1,0 +1,3 @@
+%PRINT-DIGIT {    } ( number -- )
+
+|1000 #02 PRINT-DIGIT

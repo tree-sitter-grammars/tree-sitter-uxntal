@@ -1,0 +1,1 @@
+@popcnt ( byte -- count ) LITr 00 #00 &w SFTk #01 AND STH ADDr INC SFTk ?&w POP2 STHr JMP2r
