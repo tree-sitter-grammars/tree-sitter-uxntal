@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-uxntal",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Uxn Tal Assembly grammar for tree-sitter",
   "main": "bindings/node",
   "keywords": [
