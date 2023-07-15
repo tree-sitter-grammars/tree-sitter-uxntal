@@ -1,47 +1,5 @@
 [
   {
-    "type": "non_toplevel_statement",
-    "named": true,
-    "subtypes": [
-      {
-        "type": "brackets",
-        "named": true
-      },
-      {
-        "type": "hex_literal",
-        "named": true
-      },
-      {
-        "type": "identifier",
-        "named": true
-      },
-      {
-        "type": "number",
-        "named": true
-      },
-      {
-        "type": "opcode",
-        "named": true
-      },
-      {
-        "type": "raw_ascii",
-        "named": true
-      },
-      {
-        "type": "relative_pad_operation",
-        "named": true
-      },
-      {
-        "type": "rune",
-        "named": true
-      },
-      {
-        "type": "sublabel_reference",
-        "named": true
-      }
-    ]
-  },
-  {
     "type": "absolute_pad_operation",
     "named": true,
     "fields": {},
@@ -65,7 +23,39 @@
       "required": false,
       "types": [
         {
-          "type": "non_toplevel_statement",
+          "type": "brackets",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "raw_ascii",
+          "named": true
+        },
+        {
+          "type": "relative_pad_operation",
+          "named": true
+        },
+        {
+          "type": "rune",
+          "named": true
+        },
+        {
+          "type": "sublabel_reference",
           "named": true
         }
       ]
@@ -115,7 +105,39 @@
       "required": true,
       "types": [
         {
-          "type": "non_toplevel_statement",
+          "type": "brackets",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "raw_ascii",
+          "named": true
+        },
+        {
+          "type": "relative_pad_operation",
+          "named": true
+        },
+        {
+          "type": "rune",
+          "named": true
+        },
+        {
+          "type": "sublabel_reference",
           "named": true
         }
       ]
@@ -134,7 +156,39 @@
           "named": true
         },
         {
-          "type": "non_toplevel_statement",
+          "type": "brackets",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "raw_ascii",
+          "named": true
+        },
+        {
+          "type": "relative_pad_operation",
+          "named": true
+        },
+        {
+          "type": "rune",
+          "named": true
+        },
+        {
+          "type": "sublabel_reference",
           "named": true
         }
       ]
@@ -322,11 +376,43 @@
       "required": true,
       "types": [
         {
+          "type": "brackets",
+          "named": true
+        },
+        {
+          "type": "hex_literal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
           "type": "label",
           "named": true
         },
         {
-          "type": "non_toplevel_statement",
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "opcode",
+          "named": true
+        },
+        {
+          "type": "raw_ascii",
+          "named": true
+        },
+        {
+          "type": "relative_pad_operation",
+          "named": true
+        },
+        {
+          "type": "rune",
+          "named": true
+        },
+        {
+          "type": "sublabel_reference",
           "named": true
         }
       ]

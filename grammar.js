@@ -25,10 +25,6 @@ module.exports = grammar({
     /\s/,
   ],
 
-  supertypes: $ => [
-    $.non_toplevel_statement,
-  ],
-
   word: $ => $.identifier,
 
   rules: {
@@ -43,15 +39,15 @@ module.exports = grammar({
 
     memory_execution: $ => seq(
       $.absolute_pad_operation,
-      repeat($.non_toplevel_statement),
+      repeat($._non_toplevel_statement),
     ),
 
     subroutine: $ => seq(
       $.label,
-      repeat($.non_toplevel_statement),
+      repeat($._non_toplevel_statement),
     ),
 
-    non_toplevel_statement: $ => choice(
+    _non_toplevel_statement: $ => choice(
       $.relative_pad_operation,
       $.opcode,
       $.raw_ascii,
@@ -67,7 +63,7 @@ module.exports = grammar({
       '%',
       choice($.identifier, alias(/[\da-f*/][a-zA-Z-_\d*/]*/, $.identifier)), // why can 2* and 2/ be macro idents??
       '{',
-      repeat($.non_toplevel_statement),
+      repeat($._non_toplevel_statement),
       '}',
     ),
 
@@ -129,11 +125,11 @@ module.exports = grammar({
 
     brackets: $ => seq(
       '[',
-      repeat($.non_toplevel_statement),
+      repeat($._non_toplevel_statement),
       ']',
     ),
 
-    raw_ascii: __ => seq('"', /[^\s]+/),
+    raw_ascii: _ => seq('"', /[^\s]+/),
 
     number: _ => /[\da-f]{1,4}\s/,
 
