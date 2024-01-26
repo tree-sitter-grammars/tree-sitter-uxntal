@@ -4,19 +4,6 @@
   "~" @include
   _ @text.uri @string.special)
 
-; Variables
-
-(identifier) @variable
-
-; Macros
-
-(macro
-  "%"
-  (identifier) @function.macro)
-
-((identifier) @function.macro
-  (#lua-match? @function.macro "^[a-z]?[0-9]*[A-Z-_]+$"))
-
 (rune
   . rune_start: (rune_char ",")
   . (identifier) @function.call)
@@ -43,6 +30,19 @@
   "/" @punctuation.delimiter
   (identifier) @label)
 
+; Macros
+
+(macro
+  "%"
+  (identifier) @function.macro)
+
+((identifier) @function.macro
+  (#lua-match? @function.macro "^[a-z]?[0-9]*[A-Z-_]+$"))
+
+; Variables
+
+(identifier) @variable
+
 ; Repeats
 
 ((identifier) @repeat
@@ -54,9 +54,9 @@
 
 (hex_literal
   "#" @symbol
-  (hex_lit_value) @string.special)
+  (hex_lit_value) @constant.numeric)
 
-(number) @number
+(number) @constant.numeric
 
 ; Punctuation
 
@@ -77,7 +77,7 @@
   "!"
   "?"
   "&"
-] @punctuation.special
+] @symbol
 
 ; Comments
 
